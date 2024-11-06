@@ -6541,81 +6541,95 @@
                 </section>
                 </div>
             </div>
-<!-- Container with background -->
-<div class="container text-center" style="background-image: url('path-to-your-image.jpg'); background-size: cover; background-position: center;">
-    <h2>Tham dự sự kiện</h2>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formLoiChucModal">
-        Xác nhận tham dự
-    </button>
-</div>
-
-<!-- Modal Form Gửi Lời Chúc -->
-<div class="modal fade" id="formLoiChucModal" tabindex="-1" aria-labelledby="formLoiChucLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="formLoiChucLabel">Gửi Lời Chúc</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+            <div class="container text-center" style="background-image: url('https://statics.pancake.vn/web-media/ad/c0/11/16/06080e040619cef49e87d7e06a574eb61310d3dc4bdc9f0fec3638c9.jpg'); background-size: cover; background-position: center;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formLoiChucModal">
+                    Xác nhận tham dự
                 </button>
             </div>
-            <div class="modal-body">
-                <form id="loi-chuc-form" class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
-                    <div class="form-group" style="width: 100%; max-width: 400px;">
-                        <label for="hoTen">Họ và Tên:</label>
-                        <input type="text" class="form-control" id="hoTen" required>
+            
+            <!-- Modal Form Gửi Lời Chúc -->
+            <div class="modal fade" id="formLoiChucModal" tabindex="-1" aria-labelledby="formLoiChucLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="formLoiChucLabel">Gửi Lời Chúc</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="loi-chuc-form" class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+                                <div class="form-group" style="width: 100%; max-width: 400px;">
+                                    <label for="hoTen">Họ và Tên:</label>
+                                    <input type="text" class="form-control" id="hoTen" required>
+                                </div>
+                                <div class="form-group" style="width: 100%; max-width: 400px;">
+                                    <label for="loiChuc">Lời Chúc:</label>
+                                    <textarea class="form-control" id="loiChuc" rows="3" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">Gửi</button>
+                                <div id="result-message"></div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="form-group" style="width: 100%; max-width: 400px;">
-                        <label for="loiChuc">Lời Chúc:</label>
-                        <textarea class="form-control" id="loiChuc" rows="3" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3">Gửi</button>
-                    <div id="result-message"></div>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Add jQuery and Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<style>
-    /* Styling for the background */
-    .container {
-        padding: 50px 0;
-        background-size: cover;
-        background-position: center;
-    }
-
-    /* Optional: You can also add a background color overlay */
-    .modal-body {
-        position: relative;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        height: 400px; /* Adjust height as needed */
-    }
-
-    .modal-body::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Overlay color */
-        z-index: 1;
-    }
-
-    .modal-body form {
-        position: relative;
-        z-index: 2;
-    }
-
-</style>
+            
+            <!-- Add jQuery and Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            
+            
+            <!-- Add jQuery and Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            
+            <script>
+                document.getElementById('loi-chuc-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+            
+                    const hoTen = document.getElementById('hoTen').value;
+                    const loiChuc = document.getElementById('loiChuc').value;
+            
+                    // Gửi dữ liệu lên Google Apps Script
+                    fetch('https://script.google.com/macros/s/AKfycbxwYReDeagQsQYAwdjbZDygaw5k-PMtEYLBQrLw5ducWgoeWA5UWwLywfYONQqWj_J13g/exec', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            hoTen: hoTen,
+                            loiChuc: loiChuc,
+                        })
+                    })
+                    .then(() => {
+                        document.getElementById('result-message').innerHTML = 
+                            "<div class='alert alert-success'>Lời chúc đã được gửi thành công!</div>";
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        document.getElementById('result-message').innerHTML = 
+                            "<div class='alert alert-danger'>Đã xảy ra lỗi khi gửi lời chúc. Vui lòng thử lại.</div>";
+                    });
+                });
+            </script>
+            <style>
+                .container{
+                    height: 50%;
+                    width: 27%;
+                    background: rgba(255, 255, 255, 0.62);
+                    border-color: rgba(229, 231, 235, 1);
+                }
+                .container button{
+                    margin-top: 50%;
+                }
+                @media (max-width: 768px) {
+                    .container {
+                        height: 50%;
+                        width: 100%; /* Mở rộng container ra hơn để dễ nhìn trên điện thoại */
+                        height: auto; /* Để tự động điều chỉnh chiều cao khi cần */
+                        padding: 20px; /* Thêm padding để tránh sát các cạnh */
+                    }
+            </style>
 
 <!-- Add jQuery and Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
