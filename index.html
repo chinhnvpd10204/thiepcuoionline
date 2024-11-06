@@ -8438,7 +8438,7 @@
                         }
                     },
                     "extra_css": "",
-                    "extra_script": "let videoElem = document.getElementById('123')\r\nif (videoElem) {\r\n    let playAttempt = setInterval(() =&gt; {\r\n      document.getElementById('123').play()\r\n        .then(() =&gt; {\r\n          clearInterval(playAttempt);\r\n        })\r\n        .catch(error =&gt; {});\r\n    }, 1000);\r\n}\r\ndocument.body.addEventListener('click', () =&gt; {\r\n    document.getElementById('123').play()\r\n})"
+                    "extra_script": "let videoElem = document.getElementById('123')\r\nif (videoElem) {\r\n    let playAttempt = setInterval(() =&gt; {\r\n      document.getElementById('123').play()\r\n        .then(() =&gt; {\r\n          clearInterval(playAttempt);\r\n        })\r\n        .catch(error =&gt; {});\r\n    }, 3000);\r\n}\r\ndocument.body.addEventListener('click', () =&gt; {\r\n    document.getElementById('123').play()\r\n})"
                 }
             };
         </script>
