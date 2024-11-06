@@ -8438,9 +8438,30 @@
                         }
                     },
                     "extra_css": "",
-                    "extra_script": "let videoElem = document.getElementById('123')\r\nif (videoElem) {\r\n    let playAttempt = setInterval(() =&gt; {\r\n      document.getElementById('123').play()\r\n        .then(() =&gt; {\r\n          clearInterval(playAttempt);\r\n        })\r\n        .catch(error =&gt; {});\r\n    }, 3000);\r\n}\r\ndocument.body.addEventListener('click', () =&gt; {\r\n    document.getElementById('123').play()\r\n})"
                 }
             };
+        </script>
+        <script>
+            let videoElem = document.getElementById('123');
+
+if (videoElem) {
+    // Phát âm thanh sau 2 giây
+    setTimeout(() => {
+        videoElem.play()
+            .catch(error => {
+                console.error("Không thể phát âm thanh:", error);
+            });
+    }, 2000);
+}
+
+// Lắng nghe sự kiện click để phát âm thanh khi người dùng tương tác
+document.body.addEventListener('click', () => {
+    videoElem.play()
+        .catch(error => {
+            console.error("Không thể phát âm thanh:", error);
+        });
+});
+
         </script>
         <script>
             window.gtracks = [];
